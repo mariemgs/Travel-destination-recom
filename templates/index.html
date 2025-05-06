@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Advisor</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .destination { margin: 20px; }
+        img { max-width: 200px; }
+    </style>
+</head>
+<body>
+    <h1>Travel Advisor</h1>
+    <form method="POST">
+        <label for="budget">Budget:</label>
+        <select name="budget" id="budget">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+        <br>
+        <label for="period">Travel Period:</label>
+        <select name="period" id="period">
+            <option value="winter">Winter</option>
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="autumn">Autumn</option>
+        </select>
+        <br>
+        <label for="type">Destination Type:</label>
+        <select name="type" id="type">
+            <option value="beach">Beach</option>
+            <option value="mountain">Mountain</option>
+            <option value="city">City</option>
+            <option value="nature">Nature</option>
+        </select>
+        <br>
+        <button type="submit">Find Destinations</button>
+    </form>
+
+    {% if destinations %}
+        <h2>Suggested Destinations:</h2>
+        <div>
+            {% for destination in destinations %}
+                <div class="destination">
+                    <h3>{{ destination.name }}</h3>
+                    <img src="{{ destination.image }}" alt="{{ destination.name }}">
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No destinations found. Please adjust your preferences.</p>
+    {% endif %}
+</body>
+</html>
